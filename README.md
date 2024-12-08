@@ -1,6 +1,6 @@
 # react-native-password-generator
 
-Generate strong passwords for react native applications
+Generate strong passwords based on secure, random and unique data created in native for react native applications
 
 ## Installation
 
@@ -12,13 +12,38 @@ npm install react-native-password-generator
 
 
 ```js
-import { multiply } from 'react-native-password-generator';
+import { generatePassword } from 'react-native-password-generator';
 
 // ...
 
-const result = await multiply(3, 7);
+generatePassword({ length: 24 })
+    .then(pwd => {
+      console.log(`Generated password: ${pwd}`);
+      // Generated password: a;J03$e(Pms1_Bl/e/]a+e^@
+    })
+    .catch(e => console.error(`Generating password error: ${pwd}`));
 ```
 
+## Methods
+
+#### `generatePassword(passwordConfig): Promise<String>`
+if no passwordConfig object is passed, it'll use the default config object:
+
+```js
+{
+  length: 20,
+  lowercaseIncluded: true,
+  uppercaseIncluded: true,
+  numbersIncluded: true,
+  symbolsIncluded: true,
+}
+```
+
+## Author
+
+Hayr Hotoca | [@1limxapp](https://twitter.com/1limxapp)\
+This package is used in my cross-platform app called [1LimX](https://1limx.com/)
+## License
 
 ## Contributing
 

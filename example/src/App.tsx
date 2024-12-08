@@ -1,12 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import { multiply } from 'react-native-password-generator';
+import { generatePassword } from 'react-native-password-generator';
 
 export default function App() {
-  const [result, setResult] = useState<number | undefined>();
+  const [result, setResult] = useState<string | undefined>();
 
   useEffect(() => {
-    multiply(3, 7).then(setResult);
+    generatePassword({ length: 24 })
+      .then((data) => {
+        console.log(1820, data);
+        setResult(data);
+      })
+      .catch((e) => console.error(e));
   }, []);
 
   return (
