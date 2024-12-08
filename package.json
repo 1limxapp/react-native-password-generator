@@ -1,6 +1,6 @@
 {
   "name": "react-native-password-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate strong passwords for react native applications based on secure, random and unique data created in native function without dependencies",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",

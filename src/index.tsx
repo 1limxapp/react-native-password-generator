@@ -26,7 +26,12 @@ type Password = {
   symbolsIncluded?: boolean;
 };
 
-const defaultPasswordConfig = {
+type ReturnedPassword = {
+  password: string;
+  strength: string;
+};
+
+const defaultPasswordConfig: Password = {
   length: 20,
   lowercaseIncluded: true,
   uppercaseIncluded: true,
@@ -35,7 +40,7 @@ const defaultPasswordConfig = {
 };
 
 /* eslint-disable */
-export async function generatePassword(password: Password): Promise<string> {
+export async function generatePassword(password?: Password): Promise<ReturnedPassword> {
 	const {
 		length,
 		lowercaseIncluded,
@@ -72,11 +77,11 @@ export async function generatePassword(password: Password): Promise<string> {
 
 	const strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
 	const mediumPassword = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))');
-	if (strongPassword.test(pwd)) return pwd;
+	if (strongPassword.test(pwd)) return { password: pwd, strength: "strong" };
 
-	if (mediumPassword.test(pwd)) return pwd;
+	if (mediumPassword.test(pwd)) return { password: pwd, strength: "medium" };
 	
-	return pwd;
+	return { password: pwd, strength: "weak" };
 }
 
 async function secureRandom(): Promise<number> {

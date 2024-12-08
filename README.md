@@ -19,7 +19,7 @@ import { generatePassword } from 'react-native-password-generator';
 generatePassword({ length: 24 })
     .then(pwd => {
       console.log(`Generated password: ${pwd}`);
-      // Generated password: a;J03$e(Pms1_Bl/e/]a+e^@
+      // Generated password: {"password": "S]4O?Y1-[!*=!2<5mi}7Znai", "strength": "strong"}
     })
     .catch(e => console.error(`Generating password error: ${pwd}`));
 ```
